@@ -1,16 +1,29 @@
-const todoItems = [
-    { id: 1, title: "Learn HTML", status: "done", completedOn: new Date("2021-09-11") },
-    { id: 2, title: "Learn TypeScript", status: "in-progress" },
-    { id: 3, title: "Write the best app in the world", status: "todo" },
+interface TodoItem{
+    id: number;
+    title: string;
+    status: Status;
+    completedOn?: Date;
+}
+
+enum Status {
+    DONE = "done",
+    IN_PROGRESS = 'in-progress',
+    TODO  = 'todo'
+}
+
+const todoItems: TodoItem[] = [
+    { id: 1, title: "Learn HTML", status: Status.DONE, completedOn: new Date("2021-09-11") },
+    { id: 2, title: "Learn TypeScript", status: Status.IN_PROGRESS },
+    { id: 3, title: "Write the best app in the world", status: Status.TODO },
 ]
 
-function addTodoItem(todo) {
+function addTodoItem(todo: string) {
     const id = getNextId(todoItems)
 
-    const newTodo = {
+    const newTodo: TodoItem = {
         id,
         title: todo,
-        status: "todo",
+        status: Status.TODO,
     }
 
     todoItems.push(newTodo)
@@ -18,7 +31,7 @@ function addTodoItem(todo) {
     return newTodo
 }
 
-function getNextId(items) {
+function getNextId(items: TodoItem[]) {
     return items.reduce((max, x) => x.id > max ? x.id : max, 0) + 1
 }
 
