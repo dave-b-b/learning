@@ -31,8 +31,8 @@ function addTodoItem(todo: string): TodoItem {
     return newTodo
 }
 
-function getNextId(items: TodoItem[]): number {
-    return items.reduce((max: number, x: TodoItem) => x.id > max ? x.id : max, 0) + 1
+function getNextId<T extends { id: number }>(items: T[]): number {
+    return items.reduce((max: number, x: T) => x.id > max ? x.id : max, 0) + 1
 }
 
 const newTodo = addTodoItem("Buy lots of stuff with all the money we make from the app")
