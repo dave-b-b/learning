@@ -17,7 +17,7 @@ const todoItems: TodoItem[] = [
     { id: 3, title: "Write the best app in the world", status: Status.TODO },
 ]
 
-function addTodoItem(todo: string) {
+function addTodoItem(todo: string): TodoItem {
     const id = getNextId(todoItems)
 
     const newTodo: TodoItem = {
@@ -31,8 +31,8 @@ function addTodoItem(todo: string) {
     return newTodo
 }
 
-function getNextId(items: TodoItem[]) {
-    return items.reduce((max, x) => x.id > max ? x.id : max, 0) + 1
+function getNextId(items: TodoItem[]): number {
+    return items.reduce((max: number, x: TodoItem) => x.id > max ? x.id : max, 0) + 1
 }
 
 const newTodo = addTodoItem("Buy lots of stuff with all the money we make from the app")
